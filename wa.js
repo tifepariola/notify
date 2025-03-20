@@ -36,7 +36,7 @@ app.get("/webhook", (req, res) => {
 // Receive WhatsApp messages
 app.post("/webhook", async (req, res) => {
   const body = req.body;
-
+  console.log(body);
   if (body.object && body.entry) {
     for (let entry of body.entry) {
       for (let change of entry.changes) {
