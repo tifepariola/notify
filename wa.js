@@ -90,6 +90,48 @@ async function sendWhatsAppMessage(to, message) {
   }
 }
 
+// New function to send feedback request
+async function sendFeedbackRequest(to) {
+  const url = `https://graph.facebook.com/v17.0/${process.env.WHATSAPP_PHONE_ID}/messages`;
+  const payload = {
+    messaging_product: "whatsapp",
+    to,
+    type: "template",
+    template: {
+      name: "service_feedback_request",
+      language: { code: "en_US" }
+    }
+  };
+
+  try {
+    await axios.post(url, payload, {
+      headers: {
+        Authorization: `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(`Feedback request sent to ${to}`);
+  } catch (error) {
+    console.error("Error sending feedback request:", error.response ? error.response.data : error);
+  }
+}
+
+// New route to trigger feedback request
+app.post("/send-feedback-request", async (req, res) => {
+  const { phoneNumber } = req.body;
+
+  if (!phoneNumber) {
+    return res.status(400).json({ error: "Phone number is required" });
+  }
+
+  try {
+    await sendFeedbackRequest(phoneNumber);
+    res.status(200).json({ message: "Feedback request sent successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to send feedback request" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
