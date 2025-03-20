@@ -104,10 +104,10 @@ async function sendFeedbackRequest(to) {
         {
           type: "body",
           parameters: [
-            { type: "text", text: "Sneaklin" },  // Example parameter 1
-            { type: "text", text: "services" },  // Example parameter 2
-            { type: "text", text: "survey" },  // Example parameter 3
-            { type: "text", text: "order" }  // Example parameter 4
+            { type: "text", text: "Sneaklin" },  // {{1}} - Business name
+            { type: "text", text: "shoe care service" },  // {{2}} - Product/service
+            { type: "text", text: "short survey" },  // {{3}} - Feedback form type
+            { type: "text", text: "recent order" }  // {{4}} - Experience type
           ]
         }
       ]
