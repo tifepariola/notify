@@ -99,7 +99,18 @@ async function sendFeedbackRequest(to) {
     type: "template",
     template: {
       name: "service_feedback_request",
-      language: { code: "en_US" }
+      language: { code: "en_US" },
+      components: [
+        {
+          type: "body",
+          parameters: [
+            { type: "text", text: "Sneaklin" },  // Example parameter 1
+            { type: "text", text: "services" },  // Example parameter 2
+            { type: "text", text: "survey" },  // Example parameter 3
+            { type: "text", text: "order" }  // Example parameter 4
+          ]
+        }
+      ]
     }
   };
 
