@@ -99,7 +99,7 @@ async function sendFeedbackRequest(to) {
     type: "template",
     template: {
       name: "feedback_request",
-      language: { code: "en_US" },
+      language: { code: "en" },
       components: [
         {
           type: "body",
