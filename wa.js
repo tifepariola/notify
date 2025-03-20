@@ -107,7 +107,13 @@ async function sendFeedbackRequest(to) {
             { type: "text", text: "Sneaklin" },  // {{1}} - Business name
             { type: "text", text: "shoe care service" },  // {{2}} - Product/service
             { type: "text", text: "short survey" },  // {{3}} - Feedback form type
-            { type: "text", text: "recent order" }  // {{4}} - Experience type
+            { type: "text", text: "recent order" },  // {{4}} - Experience type
+            {
+              type: "BUTTON",
+              sub_type: "flow", "index": "0",
+              parameters: [{ "type": "action", "action": {} }]
+            }
+
           ]
         }
       ]
