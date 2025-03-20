@@ -101,15 +101,15 @@ async function sendFeedbackRequest(to) {
       name: "feedback_request",
       language: { code: "en" },
       components: [
-        {
-          type: "body",
-          parameters: [
-            { type: "text", text: "Sneaklin" },  // {{1}} - Business name
-            { type: "text", text: "shoe care service" },  // {{2}} - Product/service
-            { type: "text", text: "short survey" },  // {{3}} - Feedback form type
-            { type: "text", text: "recent order" },  // {{4}} - Experience type
-          ]
-        },
+        // {
+        //   type: "body",
+        //   parameters: [
+        //     { type: "text", text: "Sneaklin" },  // {{1}} - Business name
+        //     { type: "text", text: "shoe care service" },  // {{2}} - Product/service
+        //     { type: "text", text: "short survey" },  // {{3}} - Feedback form type
+        //     { type: "text", text: "recent order" },  // {{4}} - Experience type
+        //   ]
+        // },
         {
           type: "button",
           sub_type: "flow",
