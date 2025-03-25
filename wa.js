@@ -47,6 +47,22 @@ app.post("/webhook", async (req, res) => {
         for (let change of entry.changes) {
           const messageData = change.value.messages?.[0];
 
+          // Check if message is NOT an interactive survey response
+          if (messageData?.type === "text") {
+            const senderPhone = messageData.from;
+            const senderName = change.value.contacts?.[0]?.profile?.name || "Customer";
+
+            console.log(`Received random message from ${senderName} (${senderPhone}): "${messageData.text.body}"`);
+
+            // Send auto-reply with customer care contact
+            await sendWhatsAppMessage(
+              senderPhone,
+              `Hi ${senderName}, this is an automated notification service. For customer support, please contact us directly at: *${process.env.CUSTOMER_CARE_WHATSAPP}*`
+            );
+
+            return res.sendStatus(200);
+          }
+
           if (messageData?.type === "interactive" && messageData.interactive?.type === "nfm_reply") {
             const senderPhone = messageData.from;
             const senderName = change.value.contacts?.[0]?.profile?.name || "Unknown";
